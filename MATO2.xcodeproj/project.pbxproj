@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4843106228475B300377E3E /* sequence2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4843105228475B300377E3E /* sequence2.swift */; };
 		D4ACD8022281D23B008C1F5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACD8012281D23B008C1F5C /* AppDelegate.swift */; };
 		D4ACD8042281D23B008C1F5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACD8032281D23B008C1F5C /* ViewController.swift */; };
 		D4ACD8072281D23B008C1F5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4ACD8052281D23B008C1F5C /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D4843105228475B300377E3E /* sequence2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sequence2.swift; sourceTree = "<group>"; };
 		D4ACD7FE2281D23B008C1F5C /* MATO2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MATO2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4ACD8012281D23B008C1F5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4ACD8032281D23B008C1F5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				D4ACD8012281D23B008C1F5C /* AppDelegate.swift */,
 				D4ACD8032281D23B008C1F5C /* ViewController.swift */,
 				D4ACD8162281D756008C1F5C /* Robot.swift */,
+				D4843105228475B300377E3E /* sequence2.swift */,
 				D4ACD8182281D760008C1F5C /* Sequence.swift */,
 				D4ACD8052281D23B008C1F5C /* Main.storyboard */,
 				D4ACD80B2281D23C008C1F5C /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 				D4ACD8172281D756008C1F5C /* Robot.swift in Sources */,
 				D4ACD8042281D23B008C1F5C /* ViewController.swift in Sources */,
 				D4ACD8022281D23B008C1F5C /* AppDelegate.swift in Sources */,
+				D4843106228475B300377E3E /* sequence2.swift in Sources */,
 				D4ACD8192281D760008C1F5C /* Sequence.swift in Sources */,
 				D4ACD80A2281D23B008C1F5C /* MATO2.xcdatamodeld in Sources */,
 			);

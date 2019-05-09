@@ -101,7 +101,7 @@ class ViewController: UIViewController {
         }
         let pick=ad[(Int)(arc4random_uniform(UInt32(ad.count)))]
         if(pick==1){
-            UIView.animate(withDuration: 0.1, animations: {self.cboard[zero-4].frame.origin.y+=50})
+            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero-4].frame.origin.y+=50})
             board[zero]=board[zero-4]
             board[zero-4]=0
             cboard[zero]=cboard[zero-4]
@@ -110,7 +110,7 @@ class ViewController: UIViewController {
             
         }
         if(pick==2){
-            UIView.animate(withDuration: 0.1, animations: {self.cboard[zero+4].frame.origin.y-=50})
+            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero+4].frame.origin.y-=50})
             board[zero]=board[zero+4]
             board[zero+4]=0
             cboard[zero]=cboard[zero+4]
@@ -119,7 +119,7 @@ class ViewController: UIViewController {
             
         }
         if(pick==3){
-            UIView.animate(withDuration: 0.1, animations: {self.cboard[zero-1].frame.origin.x+=50})
+            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero-1].frame.origin.x+=50})
             board[zero]=board[zero-1]
             board[zero-1]=0
             cboard[zero]=cboard[zero-1]
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
             
         }
         if(pick==4){
-            UIView.animate(withDuration: 0.1, animations: {self.cboard[zero+1].frame.origin.x-=50})
+            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero+1].frame.origin.x-=50})
             board[zero]=board[zero+1]
             board[zero+1]=0
             cboard[zero]=cboard[zero+1]
