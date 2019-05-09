@@ -1,58 +1,24 @@
 //
-//  ViewController.swift
+//  Robot.swift
 //  MATO2
 //
 //  Created by Joshua Nimmo 2020 on 5/7/19.
 //  Copyright © 2019 Joshua Nimmo 2020. All rights reserved.
 //
 
+import Foundation
 import UIKit
-
-class ViewController: UIViewController {
-    var board:[Int]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    let placer:[Int]=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-    var cboard:[UIView]=[]
-    var count=0
-    var me:Robot!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        var cplacer=placer
-        while cplacer.count != 0{
-            var index=(Int)(arc4random_uniform(UInt32(board.count)))
-            if(board[index]==0){
-                board[index]=cplacer.remove(at: 0)
-            }
-        }
-        for x in board{
-            var v1=UIView(frame: CGRect(x: 100+(50*(count%4)), y:200+(50*(count/4)), width: 50, height: 50))
-            var shade = 1-(CGFloat)(x)/16
-            v1.backgroundColor=UIColor(red: shade, green:  shade, blue:  shade, alpha: 1)
-            view.addSubview(v1)
-            cboard.append(v1)
-            count+=1
-        }
-         me=Robot()
+public class Robot{
+    public var board:[Int]=[]
+    public var cboard:[UIView]=[]
+    public var moves=0
+    public init(){
         
-       
     }
-    @IBAction func plz(_ sender: Any) {
-        var zero=0
-        count=0
-        while count<board.count {
-            if(board[count]==0){
-                zero=count
-                
-                count=16
-            }
-            count+=1
-        }
-         playSequence()
-       
-    }
+   
     public func solve(_ b:[Int],_ c:[UIView]){
         board=b
-        cboard=c
+       cboard=c
         while board != [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]{
             playSequence()
         }
@@ -67,12 +33,12 @@ class ViewController: UIViewController {
                 
                 count=16
             }
-            count+=1
+             count+=1
         }
         count=0
         while count<board.count {
             if(board[count]==0){
-                zero=count
+                 zero=count
                 
                 count=16
             }
@@ -90,27 +56,27 @@ class ViewController: UIViewController {
         if zero>=4{
             ad.append(1)
         }
-        if(zero<12){
+       else if(zero<12){
             ad.append(2)
         }
         if zero%4 != 0{
             ad.append(3)
         }
-        if zero%4 != 3{
+        else if zero%4 != 3{
             ad.append(4)
         }
         let pick=ad[(Int)(arc4random_uniform(UInt32(ad.count)))]
         if(pick==1){
-            UIView.animate(withDuration: 0.1, animations: {self.cboard[zero-4].frame.origin.y+=50})
+            UIView.animate(withDuration: 1, animations: {self.cboard[zero-4].frame.origin.y-=50})
             board[zero]=board[zero-4]
             board[zero-4]=0
             cboard[zero]=cboard[zero-4]
             zero-=4
-             cboard[zero]=UIView(frame: CGRect(x: 100+(50*(zero%4)), y:200+(50*(zero/4)), width: 50, height: 50))
+            cboard[zero]=UIView(frame: CGRect(x: 100+(50*(zero%4)), y:200+(50*(zero/4)), width: 50, height: 50))
             
         }
         if(pick==2){
-            UIView.animate(withDuration: 0.1, animations: {self.cboard[zero+4].frame.origin.y-=50})
+            UIView.animate(withDuration: 1, animations: {self.cboard[zero+4].frame.origin.y+=50})
             board[zero]=board[zero+4]
             board[zero+4]=0
             cboard[zero]=cboard[zero+4]
@@ -119,7 +85,7 @@ class ViewController: UIViewController {
             
         }
         if(pick==3){
-            UIView.animate(withDuration: 0.1, animations: {self.cboard[zero-1].frame.origin.x+=50})
+            UIView.animate(withDuration: 1, animations: {self.cboard[zero-1].frame.origin.x-=50})
             board[zero]=board[zero-1]
             board[zero-1]=0
             cboard[zero]=cboard[zero-1]
@@ -128,7 +94,7 @@ class ViewController: UIViewController {
             
         }
         if(pick==4){
-            UIView.animate(withDuration: 0.1, animations: {self.cboard[zero+1].frame.origin.x-=50})
+            UIView.animate(withDuration: 1, animations: {self.cboard[zero+1].frame.origin.x+=50})
             board[zero]=board[zero+1]
             board[zero+1]=0
             cboard[zero]=cboard[zero+1]
@@ -136,10 +102,7 @@ class ViewController: UIViewController {
             cboard[zero]=UIView(frame: CGRect(x: 100+(50*(zero%4)), y:200+(50*(zero/4)), width: 50, height: 50))
             
         }
+        moves+=1
         return zero
     }
-    
-    
-    
 }
-

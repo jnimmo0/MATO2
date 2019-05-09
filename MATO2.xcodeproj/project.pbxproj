@@ -13,6 +13,8 @@
 		D4ACD80A2281D23B008C1F5C /* MATO2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4ACD8082281D23B008C1F5C /* MATO2.xcdatamodeld */; };
 		D4ACD80C2281D23C008C1F5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4ACD80B2281D23C008C1F5C /* Assets.xcassets */; };
 		D4ACD80F2281D23C008C1F5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4ACD80D2281D23C008C1F5C /* LaunchScreen.storyboard */; };
+		D4ACD8172281D756008C1F5C /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACD8162281D756008C1F5C /* Robot.swift */; };
+		D4ACD8192281D760008C1F5C /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACD8182281D760008C1F5C /* Sequence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		D4ACD80B2281D23C008C1F5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4ACD80E2281D23C008C1F5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4ACD8102281D23C008C1F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4ACD8162281D756008C1F5C /* Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
+		D4ACD8182281D760008C1F5C /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			children = (
 				D4ACD8012281D23B008C1F5C /* AppDelegate.swift */,
 				D4ACD8032281D23B008C1F5C /* ViewController.swift */,
+				D4ACD8162281D756008C1F5C /* Robot.swift */,
+				D4ACD8182281D760008C1F5C /* Sequence.swift */,
 				D4ACD8052281D23B008C1F5C /* Main.storyboard */,
 				D4ACD80B2281D23C008C1F5C /* Assets.xcassets */,
 				D4ACD80D2281D23C008C1F5C /* LaunchScreen.storyboard */,
@@ -138,8 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4ACD8172281D756008C1F5C /* Robot.swift in Sources */,
 				D4ACD8042281D23B008C1F5C /* ViewController.swift in Sources */,
 				D4ACD8022281D23B008C1F5C /* AppDelegate.swift in Sources */,
+				D4ACD8192281D760008C1F5C /* Sequence.swift in Sources */,
 				D4ACD80A2281D23B008C1F5C /* MATO2.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
