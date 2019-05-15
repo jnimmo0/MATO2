@@ -19,14 +19,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         var cplacer=placer
         while cplacer.count != 0{
-            var index=(Int)(arc4random_uniform(UInt32(board.count)))
+            let index=(Int)(arc4random_uniform(UInt32(board.count)))
             if(board[index]==0){
                 board[index]=cplacer.remove(at: 0)
             }
         }
         for x in board{
-            var v1=UIView(frame: CGRect(x: 100+(50*(count%4)), y:200+(50*(count/4)), width: 50, height: 50))
-            var shade = 1-(CGFloat)(x)/16
+            let v1=UIView(frame: CGRect(x: 100+(50*(count%4)), y:200+(50*(count/4)), width: 50, height: 50))
+            let shade = 1-(CGFloat)(x)/16
             v1.backgroundColor=UIColor(red: shade, green:  shade, blue:  shade, alpha: 1)
             view.addSubview(v1)
             cboard.append(v1)
@@ -37,16 +37,7 @@ class ViewController: UIViewController {
        
     }
     @IBAction func plz(_ sender: Any) {
-        var zero=0
-        count=0
-        while count<board.count {
-            if(board[count]==0){
-                zero=count
-                
-                count=16
-            }
-            count+=1
-        }
+       
          playSequence()
        
     }
@@ -58,6 +49,7 @@ class ViewController: UIViewController {
         }
     }
     public func playSequence(){
+        Sequences.setOBoard(board)
         var count=0
         var first=0
         var zero=0
@@ -78,11 +70,18 @@ class ViewController: UIViewController {
             }
             count+=1
         }
-        
+        var hold=check4Sequences(first, zero)
+        board=hold.1
+        cboard=hold.2
+        if(!hold.0){
         while board[first] != first+1{
             zero=move(zero)
             
         }
+            Sequences.finish(board)
+            Sequences.purge()
+        }
+    
     }
     public func move(_ ozero:Int)->Int{
         var ad:[Int]=[]
@@ -136,9 +135,28 @@ class ViewController: UIViewController {
             cboard[zero]=UIView(frame: CGRect(x: 100+(50*(zero%4)), y:200+(50*(zero/4)), width: 50, height: 50))
             
         }
+        Sequences.addMoves(pick)
         return zero
     }
-    
+    public func check4Sequences(_ target:Int,_ zi:Int)->(Bool,[Int],[UIView]){
+        let oindex=board.lastIndex(of: target)
+        let sx=oindex!%4
+        let sy=oindex!/4
+        let ix=target%4
+        let iy=target/4
+        let zix=zi%4
+        let ziy=zi/4
+        let id=(String)(sx)+(String)(sy)+(String)(ix)+(String)(iy)+(String)(zix)+(String)(ziy)
+        if(arc4random_uniform(10) != 5){
+        for x in Sequences.sequences{
+            if(id==x.id){
+                var hold=x.replay(board, zi, cboard)
+                return (true,hold.0,hold.1)
+                }
+            }
+        }
+        return (false,board,cboard)
+    }
     
     
 }

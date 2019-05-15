@@ -107,21 +107,7 @@ public class Robot{
         return zero
     }
     
-    public func check4Sequences(_ board:[Int],_ target:Int,_ zi:Int){
-        let oindex=board.lastIndex(of: target)
-        let sx=oindex!%4
-        let sy=oindex!/4
-        let ix=target%4
-        let iy=target/4
-        let zix=zi%4
-        let ziy=zi/4
-        var id=(String)(sx)+(String)(sy)+(String)(ix)+(String)(iy)+(String)(zix)+(String)(ziy)
-        for x in sequences{
-            if(id==x.id){
-                if(arc4random_uniform(10) != 5){
-                    x.replay
-                }
-            }
-        }
-    }
+    
+   
 }
+
