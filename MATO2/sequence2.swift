@@ -24,6 +24,7 @@ public class sequence{
         var zero=ozero
         var board=oboard
         var cboard=ocboard
+        print(moves.count)
         for x in moves{
         let pick=x
         if(pick==1){

@@ -19,7 +19,8 @@ static public func setOBoard(_ o:[Int]){
         oBoard=o
     }
     
-public static func finish(_ c:[Int])->Int{
+public static func finish(_ c:[Int]){
+    nmoves=moves.count
         var count=0
         while count<c.count{
             if(oBoard[count]==c[count]){
@@ -43,22 +44,23 @@ public static func finish(_ c:[Int])->Int{
             let iy=index!/4
             let zix=zi%4
             let ziy=zi/4
-            let id=(String)(sx)+(String)(sy)+(String)(ix)+(String)(iy)+(String)(zix)+(String)(ziy)
+             let id=(String)(sx)+(String)(sy)+(String)(ix)+(String)(iy)+(String)(zix)+(String)(ziy)
             sequences.append(sequence.init(id,disturbed,nmoves,moves))
             count+=1
             
         }
-    var nmovesc=nmoves
+    print(nmoves)
+    
     nmoves=0
     moves=[]
     disturbed=[]
-    return nmovesc
+   
     }
     public static func addMoves(_ m:Int){
     moves.append(m)
 }
     public static func purge(){
-    
+    var remove=false
         var count=0
         var count2=0
         while count<sequences.count{
@@ -70,13 +72,19 @@ public static func finish(_ c:[Int])->Int{
                     }
                     else{
                         sequences.remove(at: count)
-                        count-=1
+                        remove=true
                     }
                     count2-=1
                 }
                 count2+=1
             }
+            if remove{
+                remove=false
+            }
+            else{
             count+=1
+            }
         }
+        print("Number of sequeces:"+(String)(sequences.count))
     }
 }
