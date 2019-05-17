@@ -25,6 +25,7 @@ public static func finish(_ c:[Int]){
         while count<c.count{
             if(oBoard[count]==c[count]){
                 disturbed.append(1)
+                
             }
             else{
                 disturbed.append(0)
@@ -45,7 +46,9 @@ public static func finish(_ c:[Int]){
             let zix=zi%4
             let ziy=zi/4
              let id=(String)(sx)+(String)(sy)+(String)(ix)+(String)(iy)+(String)(zix)+(String)(ziy)
+            if (String)(sx)+(String)(sy) != (String)(ix)+(String)(iy){
             sequences.append(sequence.init(id,disturbed,nmoves,moves))
+            }
             count+=1
             
         }
@@ -63,11 +66,12 @@ public static func finish(_ c:[Int]){
     var remove=false
         var count=0
         var count2=0
+        var s=sequences
         while count<sequences.count{
             count2=count+1
             while count2<sequences.count{
                 if sequences[count2].id==sequences[count].id{
-                    if sequences[count].nmoves>sequences[count].nmoves{
+                    if sequences[count2].nmoves>sequences[count].nmoves{
                         sequences.remove(at: count2)
                     }
                     else{

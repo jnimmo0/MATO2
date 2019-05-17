@@ -154,15 +154,13 @@ class ViewController: UIViewController {
         let zix=zi%4
         let ziy=zi/4
         let id=(String)(sx)+(String)(sy)+(String)(ix)+(String)(iy)+(String)(zix)+(String)(ziy)
-        if(arc4random_uniform(10) != 5){
-            
         for x in Sequences.sequences{
-            if(id==x.id){
+            if(id==x.id &&  (arc4random_uniform(UInt32(x.nmoves/50)) != 1)){
+                
                 var hold=x.replay(board, zi, cboard)
                 return (true,hold.0,hold.1)
                 }
             }
-        }
         return (false,board,cboard)
     }
     
