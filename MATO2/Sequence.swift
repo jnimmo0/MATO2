@@ -67,6 +67,14 @@ public static func finish(_ c:[Int]){
         var count=0
         var count2=0
         var s=sequences
+        while count<sequences.count {
+            if sequences[count].nmoves>1000{
+                sequences.remove(at: count)
+                count-=1
+            }
+            count+=1
+        }
+        count=0
         while count<sequences.count{
             count2=count+1
             while count2<sequences.count{

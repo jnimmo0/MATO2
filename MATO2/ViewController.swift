@@ -53,17 +53,12 @@ class ViewController: UIViewController {
         Sequences.setOBoard(board)
         num=0
         var count=0
+        var selected=(Int)(arc4random_uniform(15))
         var first=0
         var zero=0
-        while count<board.count{
-            if(board[count] != count+1){
-                first=count
-                
-                count=16
-            }
-            count+=1
+        while selected == board[selected]+1{
+            selected=(Int)(arc4random_uniform(15))
         }
-        count=0
         while count<board.count {
             if(board[count]==0){
                 zero=count
@@ -76,7 +71,7 @@ class ViewController: UIViewController {
         board=hold.1
        cboard=hold.2
         if(!hold.0){
-        while board[first] != first+1{
+        while board[selected]+1 != selected{
             zero=move(zero)
             
         }
@@ -102,8 +97,8 @@ class ViewController: UIViewController {
         }
         let pick=ad[(Int)(arc4random_uniform(UInt32(ad.count)))]
         if(pick==1){
-            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero-4].frame.origin.y+=50})
-            //UIView.animate(withDuration: 0.05, delay: 0.05*num, options: .curveLinear , animations: {self.cboard[zero-4].frame.origin.y+=50}, completion: nil)
+            //UIView.animate(withDuration: 0.5, animations: {self.cboard[zero-4].frame.origin.y+=50})
+            UIView.animate(withDuration: 0.01, delay: 0.05*num, options: .curveLinear , animations: {self.cboard[zero-4].frame.origin.y+=50}, completion: nil)
             board[zero]=board[zero-4]
             board[zero-4]=0
             cboard[zero]=cboard[zero-4]
@@ -112,8 +107,8 @@ class ViewController: UIViewController {
             
         }
         if(pick==2){
-            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero+4].frame.origin.y-=50})
-           // UIView.animate(withDuration: 0.05, delay: 0.05*num, options: .curveLinear , animations: {self.cboard[zero+4].frame.origin.y-=50}, completion: nil)
+           // UIView.animate(withDuration: 0.5, animations: {self.cboard[zero+4].frame.origin.y-=50})
+            UIView.animate(withDuration: 0.01, delay: 0.05*num, options: .curveLinear , animations: {self.cboard[zero+4].frame.origin.y-=50}, completion: nil)
             board[zero]=board[zero+4]
             board[zero+4]=0
             cboard[zero]=cboard[zero+4]
@@ -122,8 +117,8 @@ class ViewController: UIViewController {
             
         }
         if(pick==3){
-            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero-1].frame.origin.x+=50})
-            // UIView.animate(withDuration: 0.05, delay: 0.05*num, options: .curveLinear , animations: {self.cboard[zero-1].frame.origin.x+=50}, completion: nil)
+           // UIView.animate(withDuration: 0.5, animations: {self.cboard[zero-1].frame.origin.x+=50})
+            UIView.animate(withDuration: 0.01, delay: 0.05*num, options: .curveLinear , animations: {self.cboard[zero-1].frame.origin.x+=50}, completion: nil)
             board[zero]=board[zero-1]
             board[zero-1]=0
             cboard[zero]=cboard[zero-1]
@@ -132,8 +127,8 @@ class ViewController: UIViewController {
             
         }
         if(pick==4){
-            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero+1].frame.origin.x-=50})
-            // UIView.animate(withDuration: 0.05, delay: 0.05*num, options: .curveLinear , animations: {self.cboard[zero+1].frame.origin.x-=50}, completion: nil)
+           // UIView.animate(withDuration: 0.5, animations: {self.cboard[zero+1].frame.origin.x-=50})
+             UIView.animate(withDuration: 0.01, delay: 0.05*num, options: .curveLinear , animations: {self.cboard[zero+1].frame.origin.x-=50}, completion: nil)
             board[zero]=board[zero+1]
             board[zero+1]=0
             cboard[zero]=cboard[zero+1]
@@ -145,6 +140,99 @@ class ViewController: UIViewController {
         Sequences.addMoves(pick)
         return zero
     }
+   
+    @IBAction func sequenceFast(_ sender: UIButton) {
+        Sequences.setOBoard(board)
+        num=0
+        var count=0
+        var selected=(Int)(arc4random_uniform(15))
+        var first=0
+        var zero=0
+        while selected == board[selected]+1{
+            selected=(Int)(arc4random_uniform(14))
+        }
+        while count<board.count {
+            if(board[count]==0){
+                zero=count
+                
+                count=16
+            }
+            count+=1
+        }
+        var hold=check4Sequences(first, zero)
+        board=hold.1
+        cboard=hold.2
+        if(!hold.0){
+            while board[selected+1] != selected{
+                zero=moveFast(zero)
+                
+            }
+            Sequences.finish(board)
+            Sequences.purge()
+        }
+        
+    }
+    public func moveFast(_ ozero:Int)->Int{
+        var ad:[Int]=[]
+        var zero=ozero
+        if zero>=4{
+            ad.append(1)
+        }
+        if(zero<12){
+            ad.append(2)
+        }
+        if zero%4 != 0{
+            ad.append(3)
+        }
+        if zero%4 != 3{
+            ad.append(4)
+        }
+        let pick=ad[(Int)(arc4random_uniform(UInt32(ad.count)))]
+        if(pick==1){
+            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero-4].frame.origin.y+=50})
+           
+            board[zero]=board[zero-4]
+            board[zero-4]=0
+            cboard[zero]=cboard[zero-4]
+            zero-=4
+            cboard[zero]=UIView(frame: CGRect(x: 100+(50*(zero%4)), y:200+(50*(zero/4)), width: 50, height: 50))
+            
+        }
+        if(pick==2){
+             UIView.animate(withDuration: 0.5, animations: {self.cboard[zero+4].frame.origin.y-=50})
+           
+            board[zero]=board[zero+4]
+            board[zero+4]=0
+            cboard[zero]=cboard[zero+4]
+            zero+=4
+            cboard[zero]=UIView(frame: CGRect(x: 100+(50*(zero%4)), y:200+(50*(zero/4)), width: 50, height: 50))
+            
+        }
+        if(pick==3){
+             UIView.animate(withDuration: 0.5, animations: {self.cboard[zero-1].frame.origin.x+=50})
+            
+            board[zero]=board[zero-1]
+            board[zero-1]=0
+            cboard[zero]=cboard[zero-1]
+            zero-=1
+            cboard[zero]=UIView(frame: CGRect(x: 100+(50*(zero%4)), y:200+(50*(zero/4)), width: 50, height: 50))
+            
+        }
+        if(pick==4){
+            UIView.animate(withDuration: 0.5, animations: {self.cboard[zero+1].frame.origin.x-=50})
+            
+            board[zero]=board[zero+1]
+            board[zero+1]=0
+            cboard[zero]=cboard[zero+1]
+            zero+=1
+            cboard[zero]=UIView(frame: CGRect(x: 100+(50*(zero%4)), y:200+(50*(zero/4)), width: 50, height: 50))
+            
+        }
+        num+=1
+        Sequences.addMoves(pick)
+        return zero
+    }
+   
     public func check4Sequences(_ target:Int,_ zi:Int)->(Bool,[Int],[UIView]){
         let oindex=board.lastIndex(of: target)
         let sx=oindex!%4
@@ -155,15 +243,13 @@ class ViewController: UIViewController {
         let ziy=zi/4
         let id=(String)(sx)+(String)(sy)+(String)(ix)+(String)(iy)+(String)(zix)+(String)(ziy)
         for x in Sequences.sequences{
-            if(id==x.id &&  (arc4random_uniform(UInt32(x.nmoves/50)) != 1)){
-                
+            if(id==x.id) &&  (arc4random_uniform(4) != 1){
+                print("Sequence used")
                 var hold=x.replay(board, zi, cboard)
                 return (true,hold.0,hold.1)
-                }
             }
+        }
         return (false,board,cboard)
     }
-    
-    
 }
 
