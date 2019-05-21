@@ -20,6 +20,7 @@ static public func setOBoard(_ o:[Int]){
     }
     
 public static func finish(_ c:[Int]){
+    var toappend:[sequence]=[]
     nmoves=moves.count
         var count=0
         while count<c.count{
@@ -47,13 +48,13 @@ public static func finish(_ c:[Int]){
             let ziy=zi/4
              let id=(String)(sx)+(String)(sy)+(String)(ix)+(String)(iy)+(String)(zix)+(String)(ziy)
             if (String)(sx)+(String)(sy) != (String)(ix)+(String)(iy){
-            sequences.append(sequence.init(id,disturbed,nmoves,moves))
+            toappend.append(sequence.init(id,disturbed,nmoves,moves))
             }
             count+=1
             
         }
     print(nmoves)
-    
+    purge(toappend)
     nmoves=0
     moves=[]
     disturbed=[]
@@ -62,40 +63,38 @@ public static func finish(_ c:[Int]){
     public static func addMoves(_ m:Int){
     moves.append(m)
 }
-    public static func purge(){
-    var remove=false
+    public static func purge(_ oa:[sequence]){
         var count=0
         var count2=0
-        var s=sequences
-        while count<sequences.count {
-            if sequences[count].nmoves>1000{
-                sequences.remove(at: count)
+        var a=oa
+        while count<a.count {
+            if a[count].nmoves>1000{
+                a.remove(at: count)
                 count-=1
             }
             count+=1
         }
         count=0
-        while count<sequences.count{
-            count2=count+1
+        while count<a.count{
+            count2=0
             while count2<sequences.count{
-                if sequences[count2].id==sequences[count].id{
-                    if sequences[count2].nmoves>sequences[count].nmoves{
+                if sequences[count2].id==a[count].id{
+                    if sequences[count2].nmoves>a[count].nmoves{
                         sequences.remove(at: count2)
+                        
                     }
                     else{
-                        sequences.remove(at: count)
-                        remove=true
+                        a.remove(at: count)
                     }
-                    count2-=1
+                    count2=sequences.count
                 }
                 count2+=1
             }
-            if remove{
-                remove=false
-            }
-            else{
+            
             count+=1
             }
+        for x in a{
+            sequences.append(x)
         }
         print("Number of sequeces:"+(String)(sequences.count))
     }
